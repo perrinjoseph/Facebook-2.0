@@ -1,6 +1,7 @@
 const allModels = require("../models");
 const constants = require("../constants");
 const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto");
 //REGISTER
 exports.register = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -107,8 +108,44 @@ exports.forgotPassword = async (req, res, next) => {
 };
 
 //RESET PASSWORD
-exports.resetPassword = (req, res, next) => {
-  res.send("Reset Password Route");
+exports.resetPassword = async (req, res, next) => {
+  console.log("HITTT");
+  const { password } = req.body;
+  const resetToken = req.params.resetToken;
+  console.log(resetToken);
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+  console.log(resetPasswordToken);
+  try {
+    const user = await allModels.User.findOne({
+      resetPasswordToken,
+    });
+    
+    console.log(user);
+    if (!user) {
+      res.status(401).json({
+        success: "failed",
+        message: "Reset token is invalid or it is expired.",
+      });
+    }
+    user.password = password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+    res.status(201).json({
+      success: "success",
+      message: "Pasword has been reset",
+    });
+  } catch (err) {
+    // res.status(401).json({
+    //   success: "failed",
+    //   message: "Opps! Something unexpected happened. Please try again later",
+    // });
+    console.log(err);
+  }
 };
 
 const sendToken = (user, statusCode, res) => {
