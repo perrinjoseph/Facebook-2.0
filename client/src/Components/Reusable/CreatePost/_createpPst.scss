@@ -1,0 +1,23 @@
+.create__post {
+  background-color: white;
+  box-shadow: $shadow;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 20px;
+  &__bottom {
+    margin-top: 10px;
+  }
+}
+.create__post__top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  &__input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+  }
+}

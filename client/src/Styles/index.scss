@@ -1,0 +1,47 @@
+//fonts
+//--medium
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap");
+
+//variables
+@import "./variables";
+
+// css resets
+@import "./reset";
+
+//Componets styles
+@import "../Components/Nav/nav";
+@import "../Components/Reusable/ProfileTag/profileTag";
+@import "../Components/Layout/layout";
+@import "../Components/SideBar/sidebar";
+@import "../Components/NewsBar/newsbar";
+@import "../Components/Pages/Home/home";
+@import "../Components/SideBar/sidebar";
+@import "../Components/Reusable/ProfileTag/profileTag";
+@import "../Components/Reusable/SidebarMenu/sidebarMenu";
+@import "../Components/Reusable/RecentPicturePost/recentPicturePost";
+@import "../Components/Reusable/Button/button";
+@import "../Components/Reusable/Story/story";
+@import "../Components/Layout/StoryLayout/storyLayout";
+@import "../Components/Reusable/CreatePost/createpPst";
+@import "../Components/Reusable/Post/post";
+@import "../Components/Reusable/AdvertisementCard/advertisementCart";
+@import "../Components/Reusable/OnlineFriends/onlinefriends";
+@import "../Components/Pages/Profile/profile";
+@import "../Components/Reusable/ProfileCards/ProfileCardInfo/profileCardInfo";
+@import "../Components/Pages/Login/login";
+@import "../Components/Pages/Register/register";
+
+body {
+  overscroll-behavior-y: none;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

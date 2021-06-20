@@ -1,0 +1,30 @@
+.advertisement-card {
+  width: 90%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  margin-bottom: 10px;
+  box-shadow: $shadow;
+  align-items: center;
+  &__details {
+    margin-left: 20px;
+    &__heading {
+      font-weight: 800;
+    }
+  }
+  &__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+}
+
+.section-title {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-weight: 800;
+  color: $light-text-color;
+  text-align: left;
+}

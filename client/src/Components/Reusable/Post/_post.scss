@@ -1,0 +1,47 @@
+.post {
+  width: 100%;
+  padding: 30px;
+  background-color: white;
+  margin-top: 20px;
+  box-shadow: $shadow;
+  border-radius: 20px;
+  &__image {
+    width: 100%;
+    object-fit: contain;
+    margin-top: 20px;
+    max-height: 600px;
+    background-color: black;
+    border-radius: 20px;
+  }
+  &__buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+  }
+  &__top {
+    display: flex;
+    &__timestamp {
+      color: $light-text-color;
+    }
+    &__details {
+      margin-left: 10px;
+    }
+    &__title {
+      font-weight: 600;
+      color: $dark-text-color;
+    }
+    &__uname {
+      color: $light-text-color;
+    }
+  }
+  &__message {
+    margin-top: 20px;
+    color: $light-text-color;
+  }
+}
+
+@media (max-width: 360px) {
+  .post__image {
+    object-fit: cover;
+  }
+}

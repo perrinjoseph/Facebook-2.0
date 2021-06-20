@@ -1,0 +1,45 @@
+.sidebar {
+  position: sticky;
+  top: 100px;
+  width: 20%;
+  left: 0;
+  display: flex;
+  padding: 0px 20px;
+  flex-direction: column;
+  height: 100vh;
+
+  overflow: hidden;
+  overflow-y: scroll;
+  flex: 0.5;
+}
+
+@media (max-width: 1362px) {
+  .sidebar {
+    display: none;
+  }
+  .newsBar {
+    flex: 0.5;
+  }
+  .home {
+    width: 100%;
+  }
+  .layout {
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 1078px) {
+  .newsBar {
+    display: none;
+  }
+  .layout {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .post__image {
+  }
+}

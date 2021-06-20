@@ -1,0 +1,53 @@
+.recent-picture-post {
+  position: relative;
+  z-index: -2;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 300px;
+  margin-bottom: 120px;
+  &__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__details {
+    color: white;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    bottom: 0;
+    position: absolute;
+    font-weight: 800;
+    font-size: 20px;
+    margin-right: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  &__container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  &__image {
+    position: absolute;
+    top: 10;
+    left: 10;
+    right: 10;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    z-index: -1;
+    &--background {
+      @extend .recent-picture-post__image;
+      margin-top: 10px;
+      transform: translateY(20px);
+      transform: scaleY(1.1);
+      position: absolute;
+      filter: blur(10px);
+      z-index: -2;
+      opacity: 0.5;
+    }
+  }
+}

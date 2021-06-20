@@ -1,0 +1,11 @@
+.online-friends {
+  min-height: 600px;
+  width: 90%;
+  max-height: 600px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: $shadow;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin-bottom: 120px; // margin-bottom: 10px;
+}

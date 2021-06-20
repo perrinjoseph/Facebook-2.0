@@ -1,0 +1,32 @@
+.sidebar-menu {
+  width: 85%;
+  margin-top: 30px;
+  padding: 30px 30px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: $shadow;
+  min-height: 360px;
+  max-height: 360px;
+  overflow: hidden;
+  overflow-y: scroll;
+  &__list {
+    list-style-type: none;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    color: $dark-text-color;
+    cursor: pointer;
+    border-radius: 20px;
+
+    &:hover {
+      transform: translateY(-2px);
+      transform: scale(1.05);
+      box-shadow: $shadow;
+    }
+    &__title {
+      margin-left: 10px;
+    }
+  }
+}

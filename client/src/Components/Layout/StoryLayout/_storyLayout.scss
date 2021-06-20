@@ -1,0 +1,19 @@
+.story-layout {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  overflow-x: scroll;
+  padding-top: 100px;
+}
+
+@media (max-width: 790px) {
+  .story-layout {
+    justify-content: left;
+  }
+}
+
+// @media (max-width: 824px) {
+//   .story-layout {
+//     justify-content: left;
+//   }
+// }
