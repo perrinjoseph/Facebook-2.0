@@ -2,6 +2,7 @@ const allModels = require("../models");
 const constants = require("../constants");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
+
 //REGISTER
 exports.register = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -31,7 +32,7 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    res.status(400).json({
+    res.status(400).send({
       success: "failed",
       error: constants.PLEASE_PROVIDE_LOGIN_CRED,
     });
@@ -41,22 +42,22 @@ exports.login = async (req, res, next) => {
     const user = await allModels.User.findOne({ email }).select("+password");
     if (!user) {
       res
-        .status(404)
-        .json({ success: "failed", error: constants.INVALID_CRED });
+        .status(400)
+        .send({ success: "failed", error: constants.INVALID_CRED });
     }
 
     const matched = await user.matchPassword(password);
     if (!matched) {
       res
-        .status(404)
-        .json({ success: "failed", error: constants.INVALID_CRED });
+        .status(400)
+        .send({ success: "failed", error: constants.INVALID_CRED });
     }
     sendToken(user, 200, res);
   } catch (err) {
-    res.status(500).json({
-      success: "success",
-      error: err.message,
-    });
+    // res.status(500).json({
+    //   success: "success",
+    //   error: err.message,
+    // });
   }
 };
 
@@ -122,7 +123,7 @@ exports.resetPassword = async (req, res, next) => {
     const user = await allModels.User.findOne({
       resetPasswordToken,
     });
-    
+
     console.log(user);
     if (!user) {
       res.status(401).json({
@@ -150,5 +151,13 @@ exports.resetPassword = async (req, res, next) => {
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
-  res.status(statusCode).json({ success: "success", token });
+  res.status(statusCode).json({
+    success: "success",
+    token,
+    user: {
+      username: user.username,
+      email: user.email,
+      _id: user._id,
+    },
+  });
 };

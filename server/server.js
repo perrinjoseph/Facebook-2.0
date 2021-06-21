@@ -3,6 +3,7 @@ env.config({ path: "./config.env" });
 const express = require("express");
 const allModels = require("./models");
 const mongoDB = require("./config/db");
+const cors = require("cors");
 
 //db connection
 mongoDB();
@@ -16,6 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 //middleware
+app.use(cors());
 app.use(express());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
