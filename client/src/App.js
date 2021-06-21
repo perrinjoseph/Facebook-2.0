@@ -8,32 +8,30 @@ import Profile from "./Components/Pages/Profile/Profile";
 import Login from "./Components/Pages/Login/Login";
 import Register from "./Components/Pages/Register/Register";
 import { useSelector } from "react-redux";
+import useIsAuthorized from "./hooks/useIsAuthorized";
+import ProtectedRoute from "./Components/Routes/ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const data = useSelector((data) => data.user);
-  const loggedIn = Object.values(data).length > 0;
+  const auth = useIsAuthorized();
   return (
     <div className="App">
-      {!loggedIn ? <Nav /> : ""}
+      {auth ? <Nav /> : ""}
       <Layout>
         <Switch>
-          <Route exact path="/">
-            <SideBar />
-            <Home />
-            <NewsBar />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="*">
-            <Redirect to={loggedIn ? "/" : "login"} />
-          </Route>
+          <ProtectedRoute auth={auth} path="/home">
+            <SideBar />
+            <Home />
+            <NewsBar />
+          </ProtectedRoute>
+          <ProtectedRoute auth={auth} path="/profile">
+            <Profile />
+          </ProtectedRoute>
         </Switch>
       </Layout>
     </div>

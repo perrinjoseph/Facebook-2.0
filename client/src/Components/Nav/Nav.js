@@ -21,7 +21,7 @@ function Nav() {
     <header className="nav">
       <ul className="nav__list">
         <li className="nav__left">
-          <Link to="/">
+          <Link to="/home">
             <img className="nav__logo" src={logo}></img>
           </Link>
           <input

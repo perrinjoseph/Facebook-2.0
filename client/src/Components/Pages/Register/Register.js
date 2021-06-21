@@ -2,11 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import facebook from "../../../Images/facebook.svg";
 function Register() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="login">
       <img className="login__logo" src={facebook} alt="facebook logo"></img>
       <br></br>
-      <form className="login__form">
+      <form onSubmit={handleSubmit} className="login__form">
         <input type="text" placeholder="First name"></input>
         <br></br>
         <input type="text" placeholder="Last Name"></input>
@@ -15,7 +18,9 @@ function Register() {
         <br></br>
         <input type="password" placeholder="Create a password"></input>
         <br></br>
-        <button>Sign up</button>
+        <input type="password" placeholder="Confirm password"></input>
+        <br></br>
+        <button onClick={handleSubmit}>Sign up</button>
         <br></br>
         <Link style={{ textDecoration: "none" }} to="/login">
           Already have an account

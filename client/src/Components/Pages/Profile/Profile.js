@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../Layout/Layout";
 import StoryLayout from "../../Layout/StoryLayout/StoryLayout";
 import post1 from "../../../Images/post2.jpeg";
 import { Avatar } from "@material-ui/core";
 import avatar from "../../../Images/avatar1.jpg";
 import ProfileCardInfo from "../../Reusable/ProfileCards/ProfileCardInfo/ProfileCardInfo";
+import useIsAuthorized from "../../../hooks/useIsAuthorized";
+import { Redirect, useHistory } from "react-router-dom";
 
 function Profile() {
   return (

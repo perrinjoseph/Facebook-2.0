@@ -3,15 +3,15 @@ const loginReducer = (state = initialValue, action) => {
   switch (action.type) {
     case "LOGIN_USER":
       return {
-        userName: action.payload.userName,
-        firstName: action.payload.firstName,
-        lastName: action.pauload.lastName,
+        username: action.payload.username,
+        email: action.payload.email,
+        _id: action.payload._id,
       };
     case "LOGOUT_USER":
       return {
-        userName: "",
-        firstName: "",
-        lastName: "",
+        username: "",
+        email: "",
+        _id: "",
       };
     default:
       return state;
