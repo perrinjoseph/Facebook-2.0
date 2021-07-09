@@ -5,11 +5,23 @@
   transform: translate(-50%, -50%);
   background: white;
   box-shadow: $shadow;
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 50px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  transition: 500ms ease-in-out;
+  min-height: 570px;
+  justify-content: space-between;
+  min-width: 450px;
+  &__shrink {
+    min-height: 350px;
+  }
+  &__btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   &__logo {
     width: 100px;
     height: 100px;
@@ -17,7 +29,7 @@
   &__form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
     & > input {
       margin-bottom: 10px;
       width: 350px;
@@ -39,4 +51,20 @@
       cursor: pointer;
     }
   }
+}
+.resetPassword {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-shadow: $shadow;
+  border-radius: 40px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transition: 500ms ease-in-out;
+  justify-content: space-between;
+  min-width: 450px;
 }

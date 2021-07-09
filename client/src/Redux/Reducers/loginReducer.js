@@ -6,13 +6,11 @@ const loginReducer = (state = initialValue, action) => {
         username: action.payload.username,
         email: action.payload.email,
         _id: action.payload._id,
+        firstname: action.payload.firstname,
+        lastname: action.payload.lastname,
       };
     case "LOGOUT_USER":
-      return {
-        username: "",
-        email: "",
-        _id: "",
-      };
+      return {};
     default:
       return state;
   }

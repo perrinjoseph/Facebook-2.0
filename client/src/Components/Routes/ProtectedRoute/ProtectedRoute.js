@@ -1,14 +1,14 @@
 import { Redirect, Route } from "react-router-dom";
 import React from "react";
-import Profile from "../../Pages/Profile/Profile";
 import useIsAuthorized from "../../../hooks/useIsAuthorized";
 
-function ProtectedRoute({ children, auth, ...rest }) {
+function ProtectedRoute({ children, ...rest }) {
+  //   const auth = useIsAuthorized();
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        auth ? (
+        localStorage.getItem("jwt_token") ? (
           children
         ) : (
           <Redirect to={{ pathname: "/login", state: { from: location } }} />

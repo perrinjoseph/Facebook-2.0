@@ -5,7 +5,8 @@ const crypto = require("crypto");
 
 //REGISTER
 exports.register = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, firstname, lastname } = req.body;
+  console.log(username, email, password, firstname, lastname);
   //You can also hash the password here before creating the User instance, but the bcrypt is done in the model as a middleware using pre save.
   const user = await allModels.User.findOne({ email });
   if (!user) {
@@ -14,18 +15,23 @@ exports.register = async (req, res, next) => {
         username,
         email,
         password,
+        firstname,
+        lastname,
       });
-      sendToken(user, 201, res);
+      if (user) {
+        sendToken(user, 201, res);
+      }
     } catch (err) {
       res.status(400).json({
         success: "failed",
         error: err.message,
       });
     }
+  } else {
+    res
+      .status(400)
+      .json({ success: "failed", error: constants.REGISTER_USER_EXISTS });
   }
-  res
-    .status(400)
-    .json({ success: "failed", error: constants.REGISTER_USER_EXISTS });
 };
 
 //LOGIN
@@ -64,6 +70,7 @@ exports.login = async (req, res, next) => {
 //FORGOT PASSWORD
 exports.forgotPassword = async (req, res, next) => {
   const { email } = req.body;
+  console.log(email);
   try {
     const user = await allModels.User.findOne({ email });
     if (!user) {
@@ -101,10 +108,7 @@ exports.forgotPassword = async (req, res, next) => {
       });
     }
   } catch (err) {
-    res.status(500).json({
-      success: "failed",
-      error: "Opps something went wrong! Please try again later." + err.message,
-    });
+    console.log(err);
   }
 };
 
@@ -113,7 +117,7 @@ exports.resetPassword = async (req, res, next) => {
   console.log("HITTT");
   const { password } = req.body;
   const resetToken = req.params.resetToken;
-  console.log(resetToken);
+  console.log("This is the reset token ", resetToken);
   const resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
@@ -138,7 +142,6 @@ exports.resetPassword = async (req, res, next) => {
     await user.save();
     res.status(201).json({
       success: "success",
-      message: "Pasword has been reset",
     });
   } catch (err) {
     // res.status(401).json({
@@ -151,6 +154,7 @@ exports.resetPassword = async (req, res, next) => {
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
+  console.log(token);
   res.status(statusCode).json({
     success: "success",
     token,
@@ -158,6 +162,8 @@ const sendToken = (user, statusCode, res) => {
       username: user.username,
       email: user.email,
       _id: user._id,
+      firstname: user.firstname,
+      lastname: user.lastname,
     },
   });
 };

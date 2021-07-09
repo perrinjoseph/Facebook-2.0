@@ -10,8 +10,9 @@
   overflow: hidden;
   overflow-y: scroll;
   flex: 0.5;
-  
-
+  &::-webkit-scrollbar {
+    display: none;
+  }
   margin-bottom: 50px;
   &--titles {
     width: 90%;

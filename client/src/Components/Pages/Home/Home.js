@@ -19,8 +19,10 @@ import CreatePost from "../../Reusable/CreatePost/CreatePost";
 import Post from "../../Reusable/Post/Post";
 import post2 from "../../../Images/post2.jpeg";
 import story1 from "../../../Images/story1.jpeg";
+import useIsAuthorized from "../../../hooks/useIsAuthorized";
 
 function Home() {
+  const data = useIsAuthorized();
   return (
     <main className="home">
       <StoryLayout>

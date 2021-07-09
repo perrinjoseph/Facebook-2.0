@@ -9,7 +9,6 @@ import {
 import avatar from "../../../Images/avatar2.jpg";
 
 function Post({ message, image, gif, username, name, proliPic }) {
-  console.log(image);
   return (
     <section className="post">
       <header className="post__top">

@@ -2,7 +2,7 @@ import { Avatar } from "@material-ui/core";
 import React from "react";
 import pj from "../../../Images/avatar2.jpg";
 
-function ProfileTag({ type, online }) {
+function ProfileTag({ type, online, firstname, lastname, username }) {
   return (
     <article className={`profile-tag ${type === "contact" ? "contact" : ""}`}>
       <div style={{ position: "relative" }}>
@@ -24,15 +24,16 @@ function ProfileTag({ type, online }) {
       </div>
 
       <div className="profile-tag__details">
-        <span className="profile-name">Perrin Joseph</span>
+        <span className="profile-name">{`${firstname ? firstname : ""} ${
+          lastname ? lastname : ""
+        }`}</span>
         <br></br>
         {type !== "contact" ? (
-          <small className="light-text">@perrinjoseph</small>
+          <small className="light-text">@{username}</small>
         ) : (
           ""
         )}
       </div>
-      {type !== "contact" ? <h1 className="logout">Logout</h1> : ""}
     </article>
   );
 }

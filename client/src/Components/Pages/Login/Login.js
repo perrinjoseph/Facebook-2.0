@@ -1,10 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import facebook from "../../../Images/facebook.svg";
 import Axios from "../../../axios/Axios";
 import { useDispatch } from "react-redux";
 import allAction from "../../../Redux/Actions";
 import { useHistory } from "react-router-dom";
+import useIsAuthorized from "../../../hooks/useIsAuthorized";
+import Button from "../../Reusable/Button/Button";
+import useVerifyAuth from "../../../hooks/useVerifyAuth";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,6 +15,9 @@ function Login() {
   const [error, setError] = useState("msg");
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useVerifyAuth();
+
   const handelSubmit = async (e) => {
     e.preventDefault();
     if (password && email) {
@@ -35,14 +41,15 @@ function Login() {
         setPassword("");
         dispatch(allAction.loginUser(data.user));
         dispatch(allAction.setAuth());
-        localStorage.setItem("jwt_token", JSON.stringify(data.token));
+        const token = "Bearer" + " " + data.token;
+        localStorage.setItem("jwt_token", JSON.stringify(token));
         history.push("/home");
       } catch (err) {
         console.log(err);
         setError(err.response.data.error);
       }
     }
-    if (!password && !email) setError("Please provide email and password");
+    if (!password || !email) setError("Please provide email and password");
   };
   return (
     <div className="login">
@@ -76,13 +83,33 @@ function Login() {
             border: `${error === "msg" ? "3px solid white" : "3px solid pink"}`,
           }}
         ></input>
-        <br></br>
-        <button onClick={handelSubmit}>Login</button>
-        <br></br>
-        <Link style={{ textDecoration: "none" }} to="/register">
-          Sign up
+        <Link
+          style={{
+            textDecoration: "none",
+            color: "gray",
+            textAlign: "left",
+            fontSize: "13px",
+            marginLeft: "18px",
+            marginTop: "15px",
+          }}
+          to="/forgotPassword"
+        >
+          Forgot Password
         </Link>
+        <br></br>
+        <div className="login__btn-container">
+          <Button
+            style={{ width: "100%" }}
+            onClick={handelSubmit}
+            text={"Login"}
+          ></Button>
+        </div>
+        <br></br>
       </form>
+      <br></br>
+      <Link style={{ textDecoration: "none", color: "#516a8d" }} to="/register">
+        Create an account
+      </Link>
     </div>
   );
 }

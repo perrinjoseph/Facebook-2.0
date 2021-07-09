@@ -11,11 +11,19 @@ import Add from "@material-ui/icons/Add";
 import NotficationIcon from "@material-ui/icons/Notifications";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
+import Button from "../Reusable/Button/Button";
+import { useDispatch } from "react-redux";
+import { thunkLogoutUser } from "./Redux/thunks";
 
 function Nav() {
   const [dropdown, setDropdown] = useState(false);
+  const dispatch = useDispatch();
   const toggleDropDown = () => {
     setDropdown(!dropdown);
+  };
+  const handleLogout = () => {
+    console.log("Clicked");
+    dispatch(thunkLogoutUser());
   };
   return (
     <header className="nav">
@@ -55,9 +63,15 @@ function Nav() {
             />
           </IconButton>
         </div>
+
         <li className="nav__right icon-hide">
+          <Button text={"Logout"} onClick={handleLogout} />
+
           <Link to="/profile">
-            <Avatar style={{ width: "45px", height: "45px" }} src={pj} />
+            <Avatar
+              style={{ width: "45px", height: "45px", marginLeft: "20px" }}
+              src={pj}
+            />
           </Link>
           <div className="icon-hide">
             <IconButton>

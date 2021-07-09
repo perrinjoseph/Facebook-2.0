@@ -9,6 +9,7 @@ import useIsAuthorized from "../../../hooks/useIsAuthorized";
 import { Redirect, useHistory } from "react-router-dom";
 
 function Profile() {
+  const data = useIsAuthorized();
   return (
     <main className="profile">
       <div className="profile-container">

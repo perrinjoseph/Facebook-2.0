@@ -1,0 +1,48 @@
+.modal-popup {
+  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  width: 500px;
+  height: 300px;
+  border-radius: 30px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 200ms ease;
+  &__close {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 0, 76);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.561);
+    }
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__img {
+    width: 150px;
+    height: 180px;
+  }
+  &__text {
+    font-size: 30px;
+  }
+  &__subText {
+  }
+}

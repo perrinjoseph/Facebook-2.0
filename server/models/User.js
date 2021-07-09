@@ -16,6 +16,27 @@ const UserSchema = new mongoose.Schema({
       "Please provide a valid email id",
     ],
   },
+  firstname: {
+    type: String,
+    required: [true, "Please provide an email"],
+  },
+  lastname: {
+    type: String,
+    required: [true, "Please provide an email"],
+  },
+  dob: {
+    type: Date,
+  },
+  education: [
+    {
+      institute: String,
+      graduationDate: Date,
+      degree: String,
+    },
+  ],
+  occupation: {
+    type: String,
+  },
   password: {
     type: String,
     required: [true, "Please provide a password"],

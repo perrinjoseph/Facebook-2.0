@@ -9,6 +9,9 @@
   max-height: 360px;
   overflow: hidden;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &__list {
     list-style-type: none;
   }

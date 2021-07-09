@@ -7,7 +7,7 @@ const INVALID_CRED = "Invalid Credentials";
 const SUCCESS_REGISTER_MESSAGE = "User registered successfully";
 const FAILED_REGISTER_MESSAGE = "User could not be registered";
 const REGISTER_USER_EXISTS = "User exists";
-const REGISTER_USER_DOES_NOT_EXISTS = "User does not exists";
+const REGISTER_USER_DOES_NOT_EXISTS = "User does not exist";
 const UNAUTHORIZED = "Unauthorized to access this route";
 
 module.exports = {
